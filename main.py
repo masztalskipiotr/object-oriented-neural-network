@@ -11,6 +11,24 @@ def error_formula(output, target):
 
 
 if __name__ == "__main__":
+    iris_data = datasets.load_iris()
 
-    # h1 = Layer(size=8)
-    # out_layer = Layer()
+    data = iris_data.data
+    labels = iris_data.target
+    n_records, n_features = data.shape
+    normalized_data = MinMaxScaler().fit_transform(data)
+
+    labels = np.array(pd.get_dummies(labels))
+    n_output_neurons = labels[1].shape[0]
+
+    # network construction
+    h1 = Layer(size=8)
+    out_layer = Layer(size=n_output_neurons)
+
+    layers = [h1, out_layer]
+    net = Network(layers=layers)
+    net.fully_connect(num_input_features=n_features)
+    net.initialize_random_weights()
+
+    
+
