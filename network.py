@@ -14,7 +14,7 @@ class Network:
         self.layers = layers
 
     def fully_connect(self, num_input_features):
-        # add output connecrtions to neurons in every layer except the output layer
+        # add output connections to neurons in every layer except the output layer
         for i, layer in enumerate(self.layers):
             if layer == self.layers[0]:
                 for neuron in layer.neurons:
