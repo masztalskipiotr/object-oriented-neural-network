@@ -71,8 +71,11 @@ class Network:
                 for neuron in layer.neurons:
                     er = 0
                     for j in range(len(neuron.output_connections)):
-                        er += self.layers[-i].neurons[j].delta * neuron.output_connections[j].weight
-                    neuron.delta = er
+                        er += self.layers[-i].neurons[j].delta \
+                              * neuron.output_connections[j].weight
+                    # multiply error by sigmoid derivative
+                    neuron.delta = er * neuron.weighted_sum \
+                                   * (1 - neuron.weighted_sum)
 
     def update_weights(self, learning_rate=0.01):
         for layer in reversed(self.layers):

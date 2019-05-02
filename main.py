@@ -22,7 +22,7 @@ if __name__ == "__main__":
     n_output_neurons = labels[1].shape[0]
 
     # network construction
-    h1 = Layer(size=64)
+    h1 = Layer(size=8)
     out_layer = Layer(size=n_output_neurons)
 
     layers = [h1, out_layer]
